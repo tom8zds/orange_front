@@ -33,19 +33,22 @@ final router = GoRouter(
         } else {
           level = location.split("/").length;
         }
-        print(level);
         return AdaptiveScaffold(
           appbar: PreferredSize(
-            preferredSize: const Size.fromHeight(48),
-            child: SizedBox(
+            preferredSize: const Size.fromHeight(56),
+            child: Container(
+              color: Theme.of(context).appBarTheme.backgroundColor,
               width: 48,
+              height: 56,
+              padding: const EdgeInsets.symmetric(vertical: 4),
               child: Row(
                 children: [
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
                     curve: Curves.ease,
-                    width: level > 2 ? 48 : 0,
-                    padding: const EdgeInsets.all(8),
+                    width: level > 2 ? 64 : 0,
+                    height: 48,
+                    padding: const EdgeInsets.only(left: 16),
                     child: level > 2
                         ? TextButton(
                             onPressed: () {
@@ -53,7 +56,7 @@ final router = GoRouter(
                             },
                             child: const Icon(
                               Icons.arrow_back,
-                              size: 16,
+                              size: 24,
                             ),
                           )
                         : null,
@@ -64,24 +67,23 @@ final router = GoRouter(
                       child: Image(
                         image: NetworkImage(
                             "https://mikanani.me/images/mikan-pic.png"),
-                        height: 20,
-                        width: 20,
+                        height: 24,
+                        width: 24,
                       ),
                     ),
                   ),
-                  const Text(
+                  Text(
                     "ORANGE",
-                    style: TextStyle(fontSize: 11),
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(
-                    width: 10,
+                    width: 16,
                   ),
                   Text(
                     "PREVIEW",
-                    style: TextStyle(
-                      fontSize: 10,
-                      color: Theme.of(context).disabledColor,
-                    ),
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          color: Theme.of(context).disabledColor,
+                        ),
                   ),
                 ],
               ),
